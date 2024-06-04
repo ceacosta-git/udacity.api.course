@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 pytest = "8.2.1"
 flask = "3.0.3"
+flask-cors = "4.0.1"
 
 [dev-packages]
 
