@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS, cross_origin
 
 def create_app(test_config=None):
@@ -31,5 +31,13 @@ def create_app(test_config=None):
     @app.route("/url_path_parameters/<int:param_id>")
     def url_path_parameters(param_id: int):
         return jsonify({"param_id": param_id})
+    
+    @app.route("/greetings", methods=['GET', 'POST'])
+    def greetings():
+        if request.method == 'POST':
+            return "Creating a greeting!"
+        else:
+            return "Retrieving a greeting!"
+
 
     return app
