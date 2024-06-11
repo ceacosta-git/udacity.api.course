@@ -27,5 +27,9 @@ def create_app(test_config=None):
     @cross_origin()
     def messages():
         return "Getting CORS messages"
+    
+    @app.route("/url_path_parameters/<int:param_id>")
+    def url_path_parameters(param_id: int):
+        return jsonify({"param_id": param_id})
 
     return app
