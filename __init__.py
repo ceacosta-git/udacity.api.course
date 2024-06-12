@@ -32,6 +32,11 @@ def create_app(test_config=None):
     def url_path_parameters(param_id: int):
         return jsonify({"param_id": param_id})
     
+    @app.route("/url_query_parameters")
+    def url_query_parameters():
+        page_val = request.args.get("page", type=int)
+        return f"Query param [page]={page_val}"
+    
     @app.route("/greetings", methods=['GET', 'POST'])
     def greetings():
         if request.method == 'POST':
