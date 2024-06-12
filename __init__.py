@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, abort
 from flask_cors import CORS, cross_origin
 
 def create_app(test_config=None):
@@ -43,6 +43,18 @@ def create_app(test_config=None):
             return "Creating a greeting!"
         else:
             return "Retrieving a greeting!"
+        
+    @app.route('/abort_error_handlers')
+    def aborts_errors_handles():
+        abort(404)
+
+    @app.errorhandler(404)
+    def not_found(error):
+        return jsonify({
+            "success": False,
+            "error": 404,
+            "message": 'Not found'
+        }), 404
 
 
     return app
